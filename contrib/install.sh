@@ -12,6 +12,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+hostname faafo-allinone;
+ 
+echo "127.0.0.1 $HOSTNAME" >> /etc/hosts;
+
 if [[ -e /etc/os-release ]]; then
 
     # NOTE(berendt): support for CentOS/RHEL/openSUSE/SLES will be added in the future

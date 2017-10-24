@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-hostname faafo-allinone;
+# hostname faafo-allinone;
  
 echo "127.0.0.1 $HOSTNAME" >> /etc/hosts;
 

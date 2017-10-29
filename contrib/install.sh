@@ -88,7 +88,7 @@ if [[ -e /etc/os-release ]]; then
     if [[ $INSTALL_DATABASE -eq 1 ]]; then
         if [[ $ID = 'ubuntu' || $ID = 'debian' ]]; then
             sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server python-mysqldb
-            sudo sed -i -e "/bind-address/d" /etc/mysql/my.cnf
+            sudo sed -i -e "/bind-address/d" /etc/mysql/mysql.conf.d/mysqld.cnf
             sudo service mysql restart
         elif [[ $ID = 'fedora' ]]; then
             sudo dnf install -y mariadb-server python-mysql

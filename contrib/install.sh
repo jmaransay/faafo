@@ -106,7 +106,12 @@ if [[ -e /etc/os-release ]]; then
 
     if [[ $INSTALL_MESSAGING -eq 1 ]]; then
         if [[ $ID = 'ubuntu' || $ID = 'debian' ]]; then
+            # Ubuntu directly starts rabbitmq-server after installation
             sudo apt-get install -y rabbitmq-server
+            # The user and pwd are hardcoded in the script
+            sudo rabbitmqctl add_user faafo guest
+            sudo rabbitmqctl set_user_tags faafo administrator
+            sudo rabbitmqctl set_permissions -p / faafo ".*" ".*" ".*"
         elif [[ $ID = 'fedora' ]]; then
             sudo dnf install -y rabbitmq-server
             sudo systemctl enable rabbitmq-server

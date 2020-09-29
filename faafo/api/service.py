@@ -135,7 +135,8 @@ def generate_fractal(**kwargs):
                          serializer='json',
                          exchange=queues.task_exchange,
                          declare=[queues.task_exchange],
-                         routing_key='normal')
+                         routing_key='normal',
+                         delivery_mode = 2)
 
 
 def main():

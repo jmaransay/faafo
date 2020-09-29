@@ -133,7 +133,7 @@ def generate_fractal(**kwargs):
     with producers[connection].acquire(block=True) as producer:
         producer.publish(kwargs['result'],
                          serializer='json',
-                         exchange=queues.task_exchange,
+                         # exchange=queues.task_exchange,
                          declare=[queues.task_exchange],
                          routing_key='normal',
                          delivery_mode = 2)

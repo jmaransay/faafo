@@ -16,7 +16,7 @@ import kombu
 from oslo_config import cfg
 
 task_exchange = kombu.Exchange('tasks', type='direct', durable = True)
-task_queue = kombu.Queue('normal', task_exchange, routing_key='normal', durable = True, delivery_mode = 2)
+task_queue = kombu.Queue('normal', task_exchange, routing_key='normal', durable = True, delivery_mode = 2, auto_delete = False)
 
 queues_opts = [
     cfg.StrOpt('transport-url',

@@ -30,10 +30,10 @@ cfg.CONF.register_opts(queues_opts)
 
 # We establish a connection and create the queue
 
-connection = kombu.Connection(cfg.CONF.transport_url)
+# connection = kombu.Connection(cfg.CONF.transport_url)
 
-task_queue.maybe_bind(conn)
-task_queue.declare()
+# task_queue.maybe_bind(conn)
+# task_queue.declare()
 
 
 

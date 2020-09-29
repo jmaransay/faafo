@@ -18,6 +18,7 @@ from oslo_config import cfg
 task_exchange = kombu.Exchange('tasks', type='direct', durable = True)
 task_queue = kombu.Queue('normal', task_exchange, routing_key='normal', durable = True, delivery_mode = 2, auto_delete = False)
 
+
 queues_opts = [
     cfg.StrOpt('transport-url',
                default='amqp://guest:guest@localhost:5672//',
@@ -25,6 +26,15 @@ queues_opts = [
 ]
 
 cfg.CONF.register_opts(queues_opts)
+
+
+# We establish a connection and create the queue
+
+connection = kombu.Connection(cfg.CONF.transport_url)
+
+task_queue.maybe_bind(conn)
+task_queue.declare()
+
 
 
 def list_opts():

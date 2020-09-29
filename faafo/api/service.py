@@ -132,11 +132,15 @@ def get_fractal(fractalid):
 def generate_fractal(**kwargs):
     with producers[connection].acquire(block=True) as producer:
         # JA: trying to force API to create the queue:
-        maybe_declare(queues.task_exchange, producer.channel)
+        # queues.task_queue.declare()
+
+        kombu.common.maybe_declare(queues.task_exchange, producer.channel)
+        kombu.common.maybe_declare(queues.task_queue, producer.channel)
+        
         producer.publish(kwargs['result'],
                          serializer='json',
                          exchange=queues.task_exchange,
-                         declare=[queues.task_queue],
+                         declare=[queues.task_exchange,queues.task_queue],
                          routing_key='normal',
                          delivery_mode = 2)
 

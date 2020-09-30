@@ -152,8 +152,8 @@ if [[ -e /etc/os-release ]]; then
         # cd faafo
         # uncomment when using https://opendev.org/openstack/faafo.git
 	git clone https://opendev.org/openstack/faafo.git
+	cd faafo
 	git checkout HEAD^1
-        cd faafo
 	# following line required by bug 1636150
         sudo pip install --upgrade pbr
         sudo pip install -r requirements.txt

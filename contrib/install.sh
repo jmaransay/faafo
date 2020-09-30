@@ -148,11 +148,13 @@ if [[ -e /etc/os-release ]]; then
             exit 1
         fi
 
-        git clone https://github.com/jmaransay/faafo.git
-        cd faafo
+        # git clone https://github.com/jmaransay/faafo.git
+        # cd faafo
         # uncomment when using https://opendev.org/openstack/faafo.git
-	# git checkout HEAD^1
-        # following line required by bug 1636150
+	git clone https://opendev.org/openstack/faafo.git
+	git checkout HEAD^1
+        cd faafo
+	# following line required by bug 1636150
         sudo pip install --upgrade pbr
         sudo pip install -r requirements.txt
         sudo python setup.py install
